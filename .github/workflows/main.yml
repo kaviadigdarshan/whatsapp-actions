@@ -1,0 +1,24 @@
+name: Whatsapp Notification
+
+on:
+  issue_comment:
+    types: created
+  push:
+  pull_request:
+    types: [opened, closed, edited, ready_for_review, review_requested, reopened]
+  issues:
+    types: [opened, edited, pinned, closed, reopened, assigned, labeled]
+  fork:
+  watch:
+    types: [started]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kaviadigdarshan/whatsapp-actions@main
+      - name: whatsapp-notify
+        env:
+          ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
+          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+          TO_WHATSAPP_NUMBER: ${{ secrets.TO_WHATSAPP_NUMBER }}
