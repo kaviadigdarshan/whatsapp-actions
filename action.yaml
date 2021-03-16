@@ -1,0 +1,45 @@
+name: "Send Whatsapp Notification"
+author: "kaviadigdarshan"
+description: "Send a message on the user's Whatsapp number whenever there is a change in repository"
+branding:
+  icon: message-circle
+  color: black
+  
+inputs:
+  pr_number:
+    description: 'Pull Request Number'
+    default: ${{ github.event.pull_request.number }}
+  pr_title:
+    description: 'Pull Request Title'
+    default: ${{ github.event.pull_request.title }}
+  pr_body:
+    description: 'Pull Request Content'
+    default: ${{ github.event.pull_request.body }}
+  pr_user_name:
+    description: 'Pull Request User'
+    default: ${{ github.event.pull_request.user.login }}
+  pr_user_avatar:
+    description: 'Avatar Image of Pull Request User'
+    default: ${{ github.event.pull_request.user.avatar_url }}
+  issue_title: 
+    description: 'Issue Title'
+    default: ${{ github.event.issue.title }}
+  issue_number:
+    description: 'Issue Number'
+    default: ${{ github.event.issue.number }}
+  issue_user_name: 
+    description: 'Issue Raised By'
+    default: ${{ github.event.issue.user.login }}
+  issue_body:
+    description: 'Issue Body'
+    default: ${{ github.event.issue.body }}
+  repo_fork_count:
+    description: 'Number of Forks'
+    default: ${{ github.event.repository.forks_count }}
+  repo_watch_count:
+    description: 'Number of Watch'
+    default: ${{ github.event.repository.watchers_count }}
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
