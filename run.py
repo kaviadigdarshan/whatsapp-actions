@@ -35,7 +35,10 @@ response = f"Hello there, \n"
 if GITHUB_EVENT_NAME == "push":
     response += f"There is a new *push* in your repository *{REPOSITORY}* by *{PUSH_SENDER}*.\n\n"
     response += f"*Repository URL*: {repo_url}"
-    media_url = [PUSH_SENDER_AVATAR]
+    if PUSH_SENDER_AVATAR:
+        media_url = [PUSH_SENDER_AVATAR]
+    else:
+        media_url = [f"{GITHUB_SERVER_URL}/{GITHUB_ACTOR}.png"]
 elif GITHUB_EVENT_NAME == "pull_request":
     pr_url = f"{repo_url}/pull/{PR_NUMBER}"
     response += f"A new event was triggered for a *Pull Request* in your repository *{REPOSITORY}*.\n\n"
@@ -45,7 +48,10 @@ elif GITHUB_EVENT_NAME == "pull_request":
     response += f"*PR Body*  : _{PR_BODY}_\n\n"
     response += f"*Check it out*: {pr_url}\n"
     response += f"*Repository URL*: {repo_url}"
-    media_url = [PR_USER_AVATAR]
+    if PR_USER_AVATAR:
+        media_url = [PR_USER_AVATAR]
+    else:
+        media_url = [f"{GITHUB_SERVER_URL}/{GITHUB_ACTOR}.png"]
 elif GITHUB_EVENT_NAME == "issues":
     issue_url = f"{repo_url}/issues/{ISSUE_NUMBER}"
     response += f"A new event was triggered for an *Issue* in your repository *{REPOSITORY}*.\n\n"
@@ -55,7 +61,10 @@ elif GITHUB_EVENT_NAME == "issues":
     response += f"*Issue Body*  : _{ISSUE_BODY}_\n\n"
     response += f"*Check it out*: {issue_url}\n"
     response += f"*Repository URL*: {repo_url}"
-    media_url = [ISSUE_SENDER_AVATAR]
+    if ISSUE_SENDER_AVATAR:
+        media_url = [ISSUE_SENDER_AVATAR]
+    else:
+        media_url = [f"{GITHUB_SERVER_URL}/{GITHUB_ACTOR}.png"]
 elif GITHUB_EVENT_NAME == "fork":
     response += f"Your repository *{REPOSITORY}* was forked by *{GITHUB_ACTOR}*.\n"
     response += f"Current fork count: *{REPO_FORK_COUNT}*\n\n"
