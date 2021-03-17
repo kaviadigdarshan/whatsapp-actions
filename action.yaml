@@ -6,6 +6,12 @@ branding:
   color: black
   
 inputs:
+  push_sender:
+    description: 'Sender Login for Push Event'
+    default: ${{ github.event.push.sender.login }}
+  push_sender_avatar:
+    description: 'Avatar Image of Push Sender'
+    default: ${{ github.event.push.sender.avatar_url }}
   pr_number:
     description: 'Pull Request Number'
     default: ${{ github.event.pull_request.number }}
@@ -27,9 +33,12 @@ inputs:
   issue_number:
     description: 'Issue Number'
     default: ${{ github.event.issue.number }}
-  issue_user_name: 
+  issue_sender: 
     description: 'Issue Raised By'
-    default: ${{ github.event.issue.user.login }}
+    default: ${{ github.event.issue.sender.login }}
+  issue_sender_avatar:
+    description: 'Avatar Image of User who raised issue'
+    default: ${{ github.event.issue.sender.avatar_url }}
   issue_body:
     description: 'Issue Body'
     default: ${{ github.event.issue.body }}
