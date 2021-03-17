@@ -1,6 +1,6 @@
 FROM python:3.9-slim
-COPY run.py /whatsapp-actions
+COPY . /whatsapp-actions
 WORKDIR /whatsapp-actions
 RUN pip install --target=/whatsapp-actions twilio
-RUN chmod +x /run.py
-CMD ["python3.9", "/run.py"]
+RUN chmod +x /whatsapp-actions/run.py
+CMD ["python3.9", "/whatsapp-actions/run.py"]
