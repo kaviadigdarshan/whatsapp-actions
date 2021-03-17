@@ -70,7 +70,7 @@ else:
 
 # Create twilio client from the given authentication token and account sid
 client = Client(ACCOUNT_SID, AUTH_TOKEN)
-
+print(media_url)
 # Prepare and send the message payload
 message = client.messages.create(
                               media_url=media_url,
