@@ -82,7 +82,7 @@ client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
 # Prepare and send the message payload
 message = client.messages.create(
-                              media_url=media_url,
+                              media_url=media_url if media_url else None,
                               body=response,
                               from_=f"whatsapp:{FROM_WHATSAPP_NUMBER}",
                               to=f"whatsapp:{TO_WHATSAPP_NUMBER}"
