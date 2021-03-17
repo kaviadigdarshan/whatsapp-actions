@@ -14,16 +14,13 @@ GITHUB_ACTOR = os.getenv("GITHUB_ACTOR")
 GITHUB_EVENT_NAME = os.getenv("GITHUB_EVENT_NAME")
 EVENT_NAME = os.getenv("GITHUB_EVENT_NAME")
 PUSH_SENDER = os.getenv("INPUT_PUSH_SENDER")
-PUSH_SENDER_AVATAR = os.getenv("INPUT_PUSH_SENDER_AVATAR")
 PR_NUMBER = os.getenv("INPUT_PR_NUMBER")
 PR_TITLE=os.getenv("INPUT_PR_TITLE")
 PR_BODY=os.getenv("INPUT_PR_BODY")
 PR_USER_NAME = os.getenv("INPUT_PR_USER_NAME")
-PR_USER_AVATAR = os.getenv('INPUT_PR_USER_AVATAR')
 ISSUE_TITLE  = os.getenv("INPUT_ISSUE_TITLE")
 ISSUE_NUMBER = os.getenv('INPUT_ISSUE_NUMBER')
 ISSUE_SENDER = os.getenv('INPUT_ISSUE_SENDER')
-ISSUE_SENDER_AVATAR = os.getenv('INPUT_ISSUE_SENDER_AVATAR')
 ISSUE_BODY = os.getenv('INPUT_ISSUE_BODY')
 REPO_FORK_COUNT = os.getenv('INPUT_REPO_FORK_COUNT')
 REPO_WATCH_COUNT = os.getenv('INPUT_REPO_WATCH_COUNT')
@@ -32,13 +29,10 @@ repo_url = f"{GITHUB_SERVER_URL}/{REPOSITORY}"
 response = f"Hello there, \n"
 
 # Process the event and prepare Whatsapp message payload
+media_url_for_avatar = [f"{GITHUB_SERVER_URL}/{GITHUB_ACTOR}.png"]
 if GITHUB_EVENT_NAME == "push":
     response += f"There is a new *push* in your repository *{REPOSITORY}* by *{GITHUB_ACTOR}*.\n\n"
     response += f"*Repository URL*: {repo_url}"
-    if PUSH_SENDER_AVATAR:
-        media_url = [PUSH_SENDER_AVATAR]
-    else:
-        media_url = [f"{GITHUB_SERVER_URL}/{GITHUB_ACTOR}.png"]
 elif GITHUB_EVENT_NAME == "pull_request":
     pr_url = f"{repo_url}/pull/{PR_NUMBER}"
     response += f"A new event was triggered for a *Pull Request* in your repository *{REPOSITORY}*.\n\n"
@@ -48,10 +42,6 @@ elif GITHUB_EVENT_NAME == "pull_request":
     response += f"*PR Body*  : _{PR_BODY}_\n\n"
     response += f"*Check it out*: {pr_url}\n"
     response += f"*Repository URL*: {repo_url}"
-    if PR_USER_AVATAR:
-        media_url = [PR_USER_AVATAR]
-    else:
-        media_url = [f"{GITHUB_SERVER_URL}/{GITHUB_ACTOR}.png"]
 elif GITHUB_EVENT_NAME == "issues":
     issue_url = f"{repo_url}/issues/{ISSUE_NUMBER}"
     response += f"A new event was triggered for an *Issue* in your repository *{REPOSITORY}*.\n\n"
@@ -61,10 +51,6 @@ elif GITHUB_EVENT_NAME == "issues":
     response += f"*Issue Body*  : _{ISSUE_BODY}_\n\n"
     response += f"*Check it out*: {issue_url}\n"
     response += f"*Repository URL*: {repo_url}"
-    if ISSUE_SENDER_AVATAR:
-        media_url = [ISSUE_SENDER_AVATAR]
-    else:
-        media_url = [f"{GITHUB_SERVER_URL}/{GITHUB_ACTOR}.png"]
 elif GITHUB_EVENT_NAME == "fork":
     response += f"Your repository *{REPOSITORY}* was forked by *{GITHUB_ACTOR}*.\n"
     response += f"Current fork count: *{REPO_FORK_COUNT}*\n\n"
@@ -82,7 +68,7 @@ client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
 # Prepare and send the message payload
 message = client.messages.create(
-                              media_url=media_url if media_url else None,
+                              media_url=media_url_for_avatar if media_url_for_avatar else None,
                               body=response,
                               from_=f"whatsapp:{FROM_WHATSAPP_NUMBER}",
                               to=f"whatsapp:{TO_WHATSAPP_NUMBER}"
