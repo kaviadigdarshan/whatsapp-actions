@@ -31,6 +31,12 @@ TO_WHATSAPP_NUMBER | Your Whatsapp Number
 
    > Example: ```join kavia-digdarshan```
 
+## Screenshots
+
+### Pull Request Message
+
+![Message for a PR event](pull_request_notification.png)
+
 ## Support
 Give us a :star2: to support!
 
