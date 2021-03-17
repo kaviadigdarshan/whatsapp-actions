@@ -32,11 +32,11 @@ repo_url = f"{GITHUB_SERVER_URL}/{REPOSITORY}"
 response = f"Hello there, \n"
 
 # Process the event and prepare Whatsapp message payload
-if event == "push":
+if GITHUB_EVENT_NAME == "push":
     response += f"There is a new *push* in your repository *{REPOSITORY}* by *{PUSH_SENDER}*.\n\n"
     response += f"*Repository URL*: {repo_url}"
     media_url = [PUSH_SENDER_AVATAR]
-elif event == "pull_request":
+elif GITHUB_EVENT_NAME == "pull_request":
     pr_url = f"{repo_url}/pull/{PR_NUMBER}"
     response += f"A new event was triggered for a *Pull Request* in your repository *{REPOSITORY}*.\n\n"
     response += f"*PR Number*: ```#{PR_NUMBER}```\n"
@@ -46,7 +46,7 @@ elif event == "pull_request":
     response += f"*Check it out*: {pr_url}\n"
     response += f"*Repository URL*: {repo_url}"
     media_url = [PR_USER_AVATAR]
-elif event == "issues":
+elif GITHUB_EVENT_NAME == "issues":
     issue_url = f"{repo_url}/issues/{ISSUE_NUMBER}"
     response += f"A new event was triggered for an *Issue* in your repository *{REPOSITORY}*.\n\n"
     response += f"*Issue Number*: ```#{ISSUE_NUMBER}```\n"
@@ -56,11 +56,11 @@ elif event == "issues":
     response += f"*Check it out*: {issue_url}\n"
     response += f"*Repository URL*: {repo_url}"
     media_url = [ISSUE_SENDER_AVATAR]
-elif event == "fork":
+elif GITHUB_EVENT_NAME == "fork":
     response += f"Your repository *{REPOSITORY}* was forked by *{GITHUB_ACTOR}*.\n"
     response += f"Current fork count: *{REPO_FORK_COUNT}*\n\n"
     response += f"*Repository URL*: {repo_url}"
-elif event == "watch":
+elif GITHUB_EVENT_NAME == "watch":
     response += f"Your repository *{REPOSITORY}* is now watched by *{GITHUB_ACTOR}*.\n"
     response += f"Current watch count: *{REPO_WATCH_COUNT}*\n\n"
     response += f"*Repository URL*: {repo_url}"
