@@ -1,6 +1,6 @@
-name: "Send Whatsapp Notification"
+name: "Whatsapp Actions for Github"
 author: "kaviadigdarshan"
-description: "Send a message on the user's Whatsapp number whenever there is a change in repository"
+description: "Send a rich-formatted message on the user's Whatsapp number whenever there is a change in repository"
 branding:
   icon: message-circle
   color: black
