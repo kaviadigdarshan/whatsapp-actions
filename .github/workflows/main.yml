@@ -6,8 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: kaviadigdarshan/whatsapp-actions@main
       - name: whatsapp-notify
+        uses: kaviadigdarshan/whatsapp-actions@main
         env:
           ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
           AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
