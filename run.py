@@ -33,7 +33,7 @@ response = f"Hello there, \n"
 
 # Process the event and prepare Whatsapp message payload
 if GITHUB_EVENT_NAME == "push":
-    response += f"There is a new *push* in your repository *{REPOSITORY}* by *{PUSH_SENDER}*.\n\n"
+    response += f"There is a new *push* in your repository *{REPOSITORY}* by *{GITHUB_ACTOR}*.\n\n"
     response += f"*Repository URL*: {repo_url}"
     if PUSH_SENDER_AVATAR:
         media_url = [PUSH_SENDER_AVATAR]
@@ -79,7 +79,7 @@ else:
 
 # Create twilio client from the given authentication token and account sid
 client = Client(ACCOUNT_SID, AUTH_TOKEN)
-print(media_url)
+
 # Prepare and send the message payload
 message = client.messages.create(
                               media_url=media_url,
