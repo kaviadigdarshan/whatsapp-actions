@@ -28,7 +28,7 @@ ISSUE_BODY = os.getenv('INPUT_ISSUE_BODY')
 REPO_FORK_COUNT = os.getenv('INPUT_REPO_FORK_COUNT')
 REPO_WATCH_COUNT = os.getenv('INPUT_REPO_WATCH_COUNT')
 
-repo_url = f"{GITHUB_SERVER_URL}/{REPOSITORY}
+repo_url = f"{GITHUB_SERVER_URL}/{REPOSITORY}"
 response = f"Hello there, \n"
 
 # Process the event and prepare Whatsapp message payload
@@ -73,8 +73,8 @@ client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
 # Prepare and send the message payload
 message = client.messages.create(
-                              media_url=[],
-                              body='Yay! Push event triggered in master branch',
+                              media_url=media_url,
+                              body=response,
                               from_=f"whatsapp:{FROM_WHATSAPP_NUMBER}",
                               to=f"whatsapp:{TO_WHATSAPP_NUMBER}"
                           )
