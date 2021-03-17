@@ -35,7 +35,7 @@ TO_WHATSAPP_NUMBER | Your Whatsapp Number
 
 ### Pull Request Message
 
-![Message for a PR event](pull_request_notification.png)
+![Message for a PR event](pull_request_notification.jpg)
 
 ## Support
 Give us a :star2: to support!
