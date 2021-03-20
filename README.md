@@ -31,6 +31,27 @@ TO_WHATSAPP_NUMBER | Your Whatsapp Number
 
    > Example: ```join kavia-digdarshan```
 
+### Prepare the action workflow
+1. In your repository page, navigate to ```Actions > New Workflow > set up a workflow yourself```. It will open up a ```yaml``` file in code editor.
+2. Replace everything in this ```yaml``` file with below:
+
+```yaml
+name: Whatsapp Notification
+
+on: [push, pull_request, issues, fork, watch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: whatsapp-notify
+        uses: kaviadigdarshan/whatsapp-actions@main
+        env:
+          ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
+          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+          TO_WHATSAPP_NUMBER: ${{ secrets.TO_WHATSAPP_NUMBER }}
+```
+
 ## Support
 Give us a :star2: to support!
 
