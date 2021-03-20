@@ -52,6 +52,12 @@ jobs:
           TO_WHATSAPP_NUMBER: ${{ secrets.TO_WHATSAPP_NUMBER }}
 ```
 
+## Screenshots
+
+### Pull Request Message
+
+![Message for a PR event](pull_request_notification.jpg)
+
 ## Support
 Give us a :star2: to support!
 
